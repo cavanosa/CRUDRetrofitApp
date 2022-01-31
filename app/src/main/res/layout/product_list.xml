@@ -36,6 +36,7 @@
             android:backgroundTint="@color/green"
             android:text="View"
             android:textColor="@color/black"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:drawableLeft="@drawable/ic_baseline_remove_red_eye_24"/>
     </LinearLayout>
 
