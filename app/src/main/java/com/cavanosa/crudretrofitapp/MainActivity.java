@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 
+import com.cavanosa.crudretrofitapp.adapters.ProductsAdapter;
 import com.cavanosa.crudretrofitapp.interfaces.CRUDInterface;
 import com.cavanosa.crudretrofitapp.model.Product;
 import com.cavanosa.crudretrofitapp.utils.Constants;
@@ -24,10 +26,13 @@ public class MainActivity extends AppCompatActivity {
     List<Product> products;
     CRUDInterface crudInterface;
 
+    ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listView = findViewById(R.id.listView);
         getAll();
     }
 
@@ -47,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 products = response.body();
+                ProductsAdapter productsAdapter = new ProductsAdapter(products, getApplicationContext());
+                listView.setAdapter(productsAdapter);
                 products.forEach(p -> Log.i("Prods: ", p.toString()));
             }
 
