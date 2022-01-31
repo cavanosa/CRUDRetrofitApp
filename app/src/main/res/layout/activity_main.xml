@@ -6,9 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-   <ListView
-       android:id="@+id/listView"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"/>
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/createButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/green"
+        android:foregroundGravity="bottom|right"
+        android:src="@drawable/ic_baseline_add_circle_outline_24" />
 
 </RelativeLayout>

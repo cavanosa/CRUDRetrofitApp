@@ -3,16 +3,20 @@ package com.cavanosa.crudretrofitapp;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.cavanosa.crudretrofitapp.activities.CreateActivity;
 import com.cavanosa.crudretrofitapp.adapters.ProductsAdapter;
 import com.cavanosa.crudretrofitapp.interfaces.CRUDInterface;
 import com.cavanosa.crudretrofitapp.model.Product;
 import com.cavanosa.crudretrofitapp.utils.Constants;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -28,14 +32,23 @@ public class MainActivity extends AppCompatActivity {
     CRUDInterface crudInterface;
 
     ListView listView;
+    FloatingActionButton createButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.listView);
+        createButton = findViewById(R.id.createButton);
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callCreate();
+            }
+        });
         getAll();
     }
+
 
     private void getAll() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -67,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Throw err: ", t.getMessage());
             }
         });
+    }
+
+    private void callCreate() {
+        Intent intent = new Intent(getApplicationContext(), CreateActivity.class);
+        startActivity(intent);
     }
 
 }
