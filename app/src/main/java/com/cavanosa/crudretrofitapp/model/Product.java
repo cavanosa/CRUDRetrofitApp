@@ -2,7 +2,9 @@ package com.cavanosa.crudretrofitapp.model;
 
 import androidx.annotation.NonNull;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private int id;
     private String name;
     private int price;

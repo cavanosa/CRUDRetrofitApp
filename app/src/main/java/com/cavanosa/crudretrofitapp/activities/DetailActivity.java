@@ -2,8 +2,11 @@ package com.cavanosa.crudretrofitapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +26,11 @@ public class DetailActivity extends AppCompatActivity {
     TextView idText;
     TextView nameText;
     TextView priceText;
+    Button editButton;
 
     CRUDInterface crudInterface;
+
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,13 @@ public class DetailActivity extends AppCompatActivity {
         nameText = findViewById(R.id.nameText);
         priceText = findViewById(R.id.priceText);
         int id = getIntent().getExtras().getInt("id");
+        editButton = findViewById(R.id.editButton);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callEdit();
+            }
+        });
         getOne(id);
     }
 
@@ -53,7 +66,7 @@ public class DetailActivity extends AppCompatActivity {
                     Log.e("Response err: ", response.message());
                     return;
                 }
-                Product product = response.body();
+                product = response.body();
                 idText.setText(String.valueOf(product.getId()));
                 nameText.setText(product.getName());
                 priceText.setText(String.valueOf(product.getPrice()));
@@ -66,5 +79,11 @@ public class DetailActivity extends AppCompatActivity {
                 Log.e("Throw err: ", t.getMessage());
             }
         });
+    }
+
+    private void callEdit() {
+        Intent intent = new Intent(getApplicationContext(), EditActivity.class);
+        intent.putExtra("product", product);
+        startActivity(intent);
     }
 }

@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CRUDRetrofitApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.CreateActivity"></activity>
+        <activity android:name=".activities.EditActivity"></activity>
+        <activity android:name=".activities.CreateActivity" />
         <activity android:name=".activities.DetailActivity" />
         <activity
             android:name=".MainActivity"
